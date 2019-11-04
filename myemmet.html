@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML with JS</title>
+	<style type="text/css">
+		.error
+		{
+			color: red;
+
+		}
+	</style>
+</head>
+<body>
+	<h2>Please enter your information!</h2>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" id="name"></td>
+		</tr>
+		<tr>
+			<td>Country</td>
+			<td><select name="country">
+				<option value="Vietnam">Vietnam</option>
+				<option value="Malaysia">Malaysia</option>
+				<option value="America">America</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>
+				<input type="radio" name="" id="gender">Male
+				<input type="radio" name="" id="gender">Female
+			</td>
+		</tr>
+		<tr>
+			<td>Age</td>
+			<td><input type="number" name="" id="age"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" onclick="validate()" value="OK">
+			</td>
+		</tr>
+	</table>
+	<ul id="errorList" class="error">
+
+	</ul>
+	<script>
+		function validate()
+		{
+			var name = document.getElementById("name").value;
+			var gender = document.getElementById("gender");
+			var age = document.getElementById("age").value;
+			var errorList = document.getElementById("errorList");
+			//remove the old list
+			while (errorList.hasChildNodes()) 
+			{
+				errorList.removeChild(errorList.childNodes[0]);
+			}
+			document.getElementById("errorList").removeall;
+			if (name.length<5)
+			{
+				//alert("Name must has at least 5 characters");
+				var node = document.createElement("li");
+				var textnode = document.createTextNode("Name must has at least 5 characters");
+				node.appendChild(textnode);
+				document.getElementById("errorList").appendChild(node);
+			}
+			if (!gender.checked) 
+			{
+				//alert("Remember to choose your gender");
+				var node = document.createElement("li");
+				var textnode = document.createTextNode("Remember to choose your gender");
+				node.appendChild(textnode);
+				document.getElementById("errorList").appendChild(node);
+
+			}
+			if(isNaN(age) || age < 18)
+			{
+				var node = document.createElement("li");
+				var textnode = document.createTextNode("Age must be an integer and over 18 years old");
+				node.appendChild(textnode);
+				document.getElementById("errorList").appendChild(node);
+			}
+		}
+	</script>
+</body>
+</html>

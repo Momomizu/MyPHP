@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	 <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+	<title>Registration</title>
+</head>
+<body>
+	Name
+	<input type="text" name="" id="name">
+	<br/>
+	Country<select id="country">
+		<option value="VN">VN</option>
+		<option value="indo">Indo</option>
+		<option value="malay">Malaysia</option>
+	</select>
+	<br/>
+	<input type="button" id="btnRegister" value="Register">
+	<br/>
+	Name to search
+	<input type="txe" name="" id="nameSearch">
+	<input type="button" name="" value="Search" id="btnSearch">
+	<table width="300px" id="userList" border="1px">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Country</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+			
+		</tbody>
+	</table>
+<script type="text/javascript">
+	//nameList store all names which have been entered
+	var nameList = [];
+	$(document).ready(function() {
+		$("#btnRegister").click(function(event) {
+			var name = $("#name").val();
+			var country = $("#country").val();
+			var row = "<tr>" +
+			               "<td>" + name +"</td>" +
+			               "<td>" + country +"</td>" +
+			               "</tr>";
+			$("#userList tbody").append(row);
+			nameList.push(name);//add new name to the list
+
+		});
+		//perform search
+		$("#btnSearch").click(function(event) {
+			var name = $("#nameSearch").val();
+			var found = false;
+			for (var i =0; i<nameList.length; i++)
+			{
+				if (nameList[i] == name)
+				{
+					found = true;
+					break;
+				}
+			}
+			if(found){
+				alert("Found: " + name);
+			}
+			else
+			{
+				alert("Not found: " + name);
+			}
+		});
+	});
+</script>
+</body>
+</html>
